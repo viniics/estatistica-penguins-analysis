@@ -1,9 +1,23 @@
 import seaborn as sns
 import pandas as pd
 
-pinguins = sns.load_dataset('penguins')
+dataSet = pd.read_csv('pinguins.csv', sep=';', decimal=',')
 
-print(pinguins.head(4))
-print("--------------")
-pinguins = pinguins.dropna()
-print(pinguins.head(4))
+dataSet = dataSet.dropna()
+
+especies = {"Pinguim-de-adélia": 1,
+            "Pinguim-gentoo": 2,
+            "Pinguim-de-barbicha": 3}
+
+ilhas = {"Torgersen": 1,
+         "Biscoe": 2,
+         "Dream": 3}
+
+sexo = {"macho": 0,
+        "fêmea": 1}
+
+dataSet['especie'] = dataSet['especie'].map(especies)
+dataSet['ilha'] = dataSet['ilha'].map(ilhas)
+dataSet['sexo'] = dataSet['sexo'].map(sexo)
+
+print(dataSet.head())
